@@ -84,7 +84,8 @@ fieldset .header-text{
 }
 
 fieldset .header-text h1{
-  margin: 16px 0;
+  margin-bottom: 8px;
+  margin-top: 4px;
 }
 
 .form-div-input{
@@ -94,8 +95,7 @@ fieldset .header-text h1{
   display: flex;
   justify-content: center;
 
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 12px;
 }
 
 .form-div-input input{
@@ -144,7 +144,7 @@ fieldset .header-text h1{
 .label-image{
   width: 81%;
 
-  margin-top: 8px;
+  margin-top: 16px;
 
   display: flex;
   justify-content: flex-start;
@@ -155,7 +155,8 @@ fieldset .header-text h1{
   width: 300px;
   height: 120px;
 
-  margin: 16px 0;
+  margin-top: 8px;
+  margin-bottom: 16px;
 
   display: grid;
   grid-template-columns: repeat(2,1fr);
@@ -209,8 +210,9 @@ fieldset .header-text h1{
 
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-
   font-weight: 400;
+
+  margin-top: 16px;
 }
 
 .form-button-btn{
@@ -219,7 +221,7 @@ fieldset .header-text h1{
   width: 300px;
   height: 50px;
 
-  margin-top: 16px;
+  margin-top: 8px;
 
   border: 1px solid var(--first-color-ligth);
 

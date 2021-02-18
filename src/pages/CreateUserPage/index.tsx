@@ -125,7 +125,7 @@ function CreateUserPage() {
               })
             }
             <label className='upload-image' htmlFor="image[]">
-              Fotos
+              Foto
             </label>
             <input onChange={handleSelectImages} type="file" id= "image[]"/>
           </div>
