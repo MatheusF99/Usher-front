@@ -1,4 +1,4 @@
-import React, {FormEvent, useState} from 'react'
+import React, {ChangeEvent, FormEvent, useState} from 'react'
 
 
 
@@ -8,6 +8,8 @@ function CreateUserPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [images, setImages] = useState<File[]>([])
+  const [prevImg, setPrevImg] = useState<string[]>([])
 
   function handleSubmit(event: FormEvent){
     event.preventDefault()
@@ -20,6 +22,23 @@ function CreateUserPage() {
       }
     );
      
+  }
+
+  function handleSelectImages(event: ChangeEvent<HTMLInputElement>){
+    if(!event.target.files){
+      return;
+    }
+
+    const selectedImages = Array.from(event.target.files)
+
+    setImages(selectedImages)
+
+    const selectedImgPrev = selectedImages.map(image =>{
+      return URL.createObjectURL(image)
+    })
+
+    setPrevImg(selectedImgPrev)
+
   }
 
 
@@ -53,6 +72,20 @@ function CreateUserPage() {
               value={password} 
               onChange={event => setPassword(event.target.value)}
             />
+          </div>
+
+          <div className="image-contiener">
+            {
+              prevImg.map(image =>{
+                return (
+                  <img key={image} src={image} alt={name}/>
+                )
+              })
+            }
+            <label htmlFor="image">
+              +
+            </label>
+            <input onChange={handleSelectImages} type="file" id= "image"/>
           </div>
 
         </fieldset>
