@@ -1,9 +1,13 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react'
+import { useHistory } from 'react-router-dom'
+import api from '../../services/api'
 
 
 
 
 function CreateUserPage() {
+
+  const history = useHistory()
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -11,17 +15,31 @@ function CreateUserPage() {
   const [images, setImages] = useState<File[]>([])
   const [prevImg, setPrevImg] = useState<string[]>([])
 
-  function handleSubmit(event: FormEvent){
+  async function handleSubmit(event: FormEvent){
     event.preventDefault()
 
-    console.log(
-      {
-        name,
-        email,
-        password
-      }
-    );
-     
+    const data = new FormData()
+
+    console.log({
+      name,
+      email,
+      password,
+      images
+    });
+    
+
+    data.append('name', String(name))
+    data.append('email', String(email))
+    data.append('password', String(password))
+
+    images.forEach(image =>{
+      data.append('images', image)
+    })
+    
+    api.post('/users', data)
+
+    history.push('/sucess')
+
   }
 
   function handleSelectImages(event: ChangeEvent<HTMLInputElement>){
@@ -60,7 +78,7 @@ function CreateUserPage() {
 
           <div>
             <label htmlFor="email">E-mail</label>
-            <input type="email "
+            <input type="email"
               value={email} 
               onChange={event => setEmail(event.target.value)}
             />
