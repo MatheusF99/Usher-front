@@ -37,6 +37,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body,
+input,
+button,
+textarea{
+    font: 500 16px Poppins;
+    color: var(--color-text-base);
+}
+
 #root{
   width: 100vw;
   height: 100vh;

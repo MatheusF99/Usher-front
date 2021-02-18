@@ -72,10 +72,10 @@ function CreateUserPage() {
             <span>Start for free</span>
 
             <h1>
-              Create User
+              Create your user
             </h1>
 
-            <span>If you have account? <Link to="/">Login</Link></span>
+            <span>You have account? <Link to="/">Login</Link></span>
           </div>
 
           <div className="form-div-input">
