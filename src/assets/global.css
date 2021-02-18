@@ -1,0 +1,48 @@
+:root{
+  --color-background: #F0F0F7;
+  --first-color: #1a73e8;
+  --first-color-ligth: #1a73e8d3;
+  --dark-color: #44475a;
+  --light-color: #f8f8f2;
+  --input-color: #80868b;
+  --input-dark-color: #f8f8f2;
+  --border-color: #dadce0;
+  --border-dark-color: #f1fa8c;
+  --border-dark-color-second: #d1da77;
+
+
+  --normal-font-size: 1rem;
+  --small-font-size: .75rem;
+  
+}
+
+*, ::before, ::after{
+  box-sizing: border-box;
+}
+
+body {
+
+  width: 100vw;
+  height: 100vh;
+
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+
+  font-size: var(--normal-font-size);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root{
+  width: 100vw;
+  height: 100vh;
+}
+
+.App{
+  width: 100vw;
+  height: 100vh;
+}

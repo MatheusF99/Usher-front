@@ -1,12 +1,15 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import api from '../../services/api'
 
+import landingImage from '../../assets/images/undraw_annotation_7das.svg'
+import backgroundImage from '../../assets/images/Background-big.svg'
 
-
+import './create.css'
 
 function CreateUserPage() {
 
+  //#region const use state
   const history = useHistory()
 
   const [name, setName] = useState('')
@@ -14,7 +17,7 @@ function CreateUserPage() {
   const [password, setPassword] = useState('')
   const [images, setImages] = useState<File[]>([])
   const [prevImg, setPrevImg] = useState<string[]>([])
-
+  //#endregion
   async function handleSubmit(event: FormEvent){
     event.preventDefault()
 
@@ -63,36 +66,57 @@ function CreateUserPage() {
   return (
     <div className="create-user-page">
 
-      <form onSubmit={handleSubmit} action=""> 
+      <form onSubmit={handleSubmit} className="form-create"> 
         <fieldset>
+          <div className="header-text">
+            <span>Start for free</span>
 
-          <legend>Dados</legend>
+            <h1>
+              Create User
+            </h1>
 
-          <div>
-            <label htmlFor="UserName">UserName</label>
-            <input type="text" 
+            <span>If you have account? <Link to="/">Login</Link></span>
+          </div>
+
+          <div className="form-div-input">
+            <input 
+              required
+              type="text" 
               value={name} 
               onChange={event => setName(event.target.value)}
+              className="form-input"
             />
+            <label htmlFor="UserName" className="form-label">UserName</label>
           </div>
 
-          <div>
-            <label htmlFor="email">E-mail</label>
-            <input type="email"
+          <div className="form-div-input">
+            <input 
+              required
+              type="text"
               value={email} 
               onChange={event => setEmail(event.target.value)}
+              className="form-input"
             />
+            <label htmlFor="email" className="form-label">E-mail</label>
           </div>
 
-          <div>
-            <label htmlFor="password">Password</label>
-            <input type="password"
+          <div className="form-div-input">
+
+            <input
+              required 
+              type="password"
               value={password} 
               onChange={event => setPassword(event.target.value)}
+              className="form-input"
             />
+            <label htmlFor="password" className="form-label">Password</label>
           </div>
 
-          <div className="image-contiener">
+
+            <label className='label-image'>
+              Escolha uma foto de Perfil:
+            </label>
+          <div className="image-container">
             {
               prevImg.map(image =>{
                 return (
@@ -100,18 +124,24 @@ function CreateUserPage() {
                 )
               })
             }
-            <label htmlFor="image">
-              +
+            <label className='upload-image' htmlFor="image[]">
+              Fotos
             </label>
-            <input onChange={handleSelectImages} type="file" id= "image"/>
+            <input onChange={handleSelectImages} type="file" id= "image[]"/>
           </div>
 
+          <button className="form-input-btn" type="submit">
+            Create on account
+          </button>
+          <button className="form-button-btn" type="button">
+            Sign up with google account
+          </button>
+
         </fieldset>
-
-        <button className="confirm-button" type="submit">
-          Confirmar
-        </button>
-
+        <div className="field-images">
+          <img className='image-center' src={landingImage} alt="landing"/>
+          <img className="img-background" src={backgroundImage} alt="landing"/>
+        </div>
       </form>
     </div>
   );
