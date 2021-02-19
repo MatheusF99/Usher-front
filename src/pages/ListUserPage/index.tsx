@@ -1,13 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import api from '../../services/api';
 
+import './list.css'
 
 interface User{
   id: string,
   name: string;
   email: string;
+  images: Array<{
+    url: string
+  }>
 }
-function LoginPage() {
+function HomePage() {
   const [users, setUsers] = useState<User[]>([])
   
   useEffect(() => {
@@ -19,17 +23,23 @@ function LoginPage() {
   
 
   return (
-    <div className="App">
-      <h1>hello world</h1>
+    <div className="home-page">
+      <h1>Hello world</h1>
+      <div className="box-users">
       {
         users.map(user =>{
           return(
-            <p key={user.id}> name: {user.name}, email: {user.email}</p>
+            <div className="info-user">
+              <p key={user.id}> {user.name} </p>
+              <p> {user.email} </p>
+              <img src={user.images[0].url} alt={user.name}/>
+            </div>
           )
         })
       }
+      </div>
     </div>
   );
 }
 
-export default LoginPage
+export default HomePage

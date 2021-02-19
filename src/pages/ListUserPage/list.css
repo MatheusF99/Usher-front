@@ -1,0 +1,46 @@
+::-webkit-scrollbar{
+  display: none;
+}
+
+.home-page{
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+
+}
+
+.box-users{
+
+  height: 100%;
+  overflow-y: auto;
+
+}
+
+.info-user p{
+
+  margin: 5px 0;
+  
+  padding-left: 12px;
+}
+
+.info-user{
+
+  height: 71.5%;
+
+  border: 1px solid #aaa;
+
+  margin-bottom: 16px;
+
+}
+
+.info-user img{
+  width: 600px;
+  height: 500px;
+}
