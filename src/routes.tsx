@@ -8,10 +8,10 @@ import Sucess from './pages/Sucess'
 function Routes() {
   return (
     <BrowserRouter>
-      <Route exact path="/user" component={HomePage} />
       <Route exact path="/user/create" component={CreateUserPage} />
       <Route exact path="/sucess" component={Sucess} />
       <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/user" component={HomePage} />
     </BrowserRouter>
   )
 }

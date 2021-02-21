@@ -1,38 +1,60 @@
 import React, {FormEvent, useState} from 'react';
+import { useHistory } from 'react-router-dom'
+import api from '../../services/api';
 
 
 // import { Container } from './styles';
 
 function LoginPage(){
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const history = useHistory()
+
+  const [emailUser, setEmailUser] = useState('')
+  const [passwordUser, setPasswordUser] = useState('')
+  const [loginStatus, setLoginStatus] = useState(false)
   
 
 
-  function handleSubmit(event: FormEvent){
+  function handleLogin(event: FormEvent){
     event.preventDefault()
 
-    console.log(
-      {
-        email,
-        password
-      }
+    api.post('/user/login', {
 
-    )
+      email: emailUser,
+      password: passwordUser
+
+    }).then( (response) => {
+
+      if(!response.data.auth){
+        
+        setLoginStatus(false)
+        console.log(response.status);
+        
+
+      } else {
+
+        localStorage.setItem("token","Bearer " + response.data.token)
+        setLoginStatus(true)
+
+      }
+    })
+  }
+
+  const userAutheticate = () => {
+    history.push('/user')
   }
 
   return (
     <div className="login-page">
-      <form onSubmit={handleSubmit} action="">
+      <form onSubmit={handleLogin} action="">
 
         <div className="input-conainer">
           <label className="login-label" htmlFor="">Email</label>
           <input 
             className="login-input" 
             type="email"
-            value={email} 
-            onChange={event => setEmail(event.target.value)}
+            value={emailUser} 
+            onChange={event => setEmailUser(event.target.value)}
           />
         </div>
 
@@ -41,8 +63,8 @@ function LoginPage(){
           <input 
             className="login-input" 
             type="password"
-            value={password}
-            onChange={event => setPassword(event.target.value)}
+            value={passwordUser}
+            onChange={event => setPasswordUser(event.target.value)}
           />
         </div>
 
@@ -51,6 +73,9 @@ function LoginPage(){
         </button>
 
       </form>
+      {loginStatus && (
+        <button type='button' onClick={userAutheticate}> Checar autenticação </button> 
+       )}
     </div>
   )
 }

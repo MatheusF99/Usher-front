@@ -15,8 +15,12 @@ function HomePage() {
   const [users, setUsers] = useState<User[]>([])
   
   useEffect(() => {
-    api.get('/users').then(response =>{
-      console.log(response.data);
+    api.get('/users', {
+      headers:{
+        authorization: localStorage.getItem('token')
+      }
+    }
+    ).then(response =>{
       setUsers(response.data)
     })
   }, [])
