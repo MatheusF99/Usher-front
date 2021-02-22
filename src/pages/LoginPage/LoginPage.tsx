@@ -1,5 +1,5 @@
 import React, {FormEvent, useState} from 'react';
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import api from '../../services/api';
 
 import './login.css'
@@ -47,6 +47,8 @@ function LoginPage(){
   return (
     <div className="login-page">
       <form onSubmit={handleLogin} action="">
+        
+        <h1>Log In</h1>
 
         <div className="input-container">
           <input 
@@ -68,15 +70,24 @@ function LoginPage(){
           <label htmlFor="">Password</label>
         </div>
 
+        <div className="check-input">
+          <input type="checkbox" name="" id=""/>
+          <label htmlFor=""> Keep you login </label>
+        </div>
+
         <button type="submit" className="button-form">
           Login
         </button>
 
+        <div className="button-container">
+          {loginStatus && (
+            <button type='button' onClick={userAutheticate}> Checar autenticação </button> 
+          )}
+        </div>
       </form>
-      <div className="button-container">
-        {loginStatus && (
-          <button type='button' onClick={userAutheticate}> Checar autenticação </button> 
-        )}
+
+      <div className="create-account">
+        Don't have account? <Link to="/user/create">Sign Up</Link>
       </div>
     </div>
   )

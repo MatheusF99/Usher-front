@@ -7,23 +7,25 @@
   align-items: center;
 
   position: relative;
+
+  flex-direction: column;
 }
 
-form{
-  width: 30%;
+.login-page form{
+  width: 350px;
   height: 70%;
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   flex-direction: column;
 
 }
 
-form .input-container{
+.login-page form .input-container{
   position: relative;
-  width: 300px;
+  width: 350px;
 
   display: flex;
   justify-content: center;
@@ -31,9 +33,9 @@ form .input-container{
   margin-top: 12px;
 }
 
-form .input-container input{
+.login-page form .input-container input{
 
-  width: 300px;
+  width: 350px;
   height: 50px;
   outline: none;
   padding: 16px;
@@ -52,7 +54,7 @@ form .input-container input{
   z-index: 1;
 }
 
-form .input-container label{
+.login-page form .input-container label{
   position: absolute;
 
   left: 10px;
@@ -66,23 +68,35 @@ form .input-container label{
   z-index: 10;
 }
 
-form .input-container input:valid + label,
-form .input-container input:focus + label{
+.login-page form .input-container input:valid + label,
+.login-page form .input-container input:focus + label{
   top: -1px;
   font-size: 15px;
   background-color: #fff;
 }
 
-form .button-form{
-  margin-top: 16px;
+.login-page .check-input{
+  margin-top: 32px;
+}
+
+
+.login-page form .button-form{
+
+  margin-top: 32px;
 
   background: var(--first-color);
   border: 0;
-  width: 150px;
-  height: 40px;
+  width: 350px;
+  height: 55px;
 
   color: #fff;
 
-  border-radius: 50px;
+  border-radius: 10px;
 }
 
+.login-page .create-account{
+  width: 350px;
+
+  display: flex;
+
+}

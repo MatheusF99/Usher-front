@@ -58,7 +58,7 @@
 .form-create fieldset{
   position: relative;
 
-  width: 450px;
+  width: 700px;
   height: 100%;
 
   display: flex;
@@ -122,7 +122,7 @@ fieldset .header-text h1{
 .form-div-input label{
   position: absolute;
 
-  left: 50px;
+  left: 115px;
   top: calc(50% + 1px);
   transform: translateY(-50%);
   color: #aaa;
@@ -142,7 +142,7 @@ fieldset .header-text h1{
 }
 
 .label-image{
-  width: 81%;
+  width: 60%;
 
   margin-top: 16px;
 
