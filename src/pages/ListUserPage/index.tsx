@@ -13,17 +13,24 @@ interface User{
 }
 function HomePage() {
   const [users, setUsers] = useState<User[]>([])
+
+  const token = localStorage.getItem('token')
   
   useEffect(() => {
     api.get('/users', {
       headers:{
-        authorization: localStorage.getItem('token')
+        authorization: token
       }
     }
     ).then(response =>{
+      console.log({
+       token,
+        response
+      });
+      
       setUsers(response.data)
     })
-  }, [])
+  }, [token])
   
 
   return (
@@ -33,8 +40,8 @@ function HomePage() {
       {
         users.map(user =>{
           return(
-            <div className="info-user">
-              <p key={user.id}> {user.name} </p>
+            <div key={user.id} className="info-user">
+              <p > {user.name} </p>
               <p> {user.email} </p>
               <img src={user.images[0].url} alt={user.name}/>
             </div>

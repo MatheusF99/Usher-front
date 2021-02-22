@@ -2,7 +2,7 @@ import React, {FormEvent, useState} from 'react';
 import { useHistory } from 'react-router-dom'
 import api from '../../services/api';
 
-
+import './login.css'
 // import { Container } from './styles';
 
 function LoginPage(){
@@ -28,7 +28,7 @@ function LoginPage(){
       if(!response.data.auth){
         
         setLoginStatus(false)
-        console.log(response.status);
+        console.log(response.data);
         
 
       } else {
@@ -48,34 +48,36 @@ function LoginPage(){
     <div className="login-page">
       <form onSubmit={handleLogin} action="">
 
-        <div className="input-conainer">
-          <label className="login-label" htmlFor="">Email</label>
+        <div className="input-container">
           <input 
-            className="login-input" 
+            required
             type="email"
             value={emailUser} 
             onChange={event => setEmailUser(event.target.value)}
           />
+          <label htmlFor="">Email</label>
         </div>
 
-        <div className="input-conainer">
-          <label className="login-label" htmlFor="">Password</label>
-          <input 
-            className="login-input" 
+        <div className="input-container">
+          <input  
+            required
             type="password"
             value={passwordUser}
             onChange={event => setPasswordUser(event.target.value)}
           />
+          <label htmlFor="">Password</label>
         </div>
 
-        <button type="submit">
+        <button type="submit" className="button-form">
           Login
         </button>
 
       </form>
-      {loginStatus && (
-        <button type='button' onClick={userAutheticate}> Checar autenticação </button> 
-       )}
+      <div className="button-container">
+        {loginStatus && (
+          <button type='button' onClick={userAutheticate}> Checar autenticação </button> 
+        )}
+      </div>
     </div>
   )
 }

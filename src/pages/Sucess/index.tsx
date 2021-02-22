@@ -7,8 +7,8 @@ function Sucess() {
     <div>
       <h1>usucario criado com sucesso</h1>
 
-      <Link to='/user'>
-        home
+      <Link to='/login'>
+        Login
       </Link>
     </div>
   )
