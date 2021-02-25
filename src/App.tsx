@@ -1,15 +1,15 @@
 import React from 'react';
+import { AuthProvider } from './Context/authContext';
 import Routes from './routes';
 
-// import { AuthProvider } from './Context/authContex'
 function App() {
 
   return(
-  
+    <AuthProvider>
       <div className="App">
         <Routes/>
       </div>
-    
+    </AuthProvider>
   )
 
 }

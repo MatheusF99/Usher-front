@@ -1,5 +1,6 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useState, useContext} from 'react';
 import { Link, useHistory } from 'react-router-dom'
+import { AuthContext } from '../../Context/authContext';
 import api from '../../services/api';
 
 import './login.css'
@@ -7,46 +8,34 @@ import './login.css'
 
 function LoginPage(){
 
-  const history = useHistory()
+  const {authenticated} = useContext(AuthContext)
+
+  // const history = useHistory()
 
   const [emailUser, setEmailUser] = useState('')
   const [passwordUser, setPasswordUser] = useState('')
-  const [loginStatus, setLoginStatus] = useState(false)
+  
   
 
+  
+  // function handleLogin(event: FormEvent){
+  //   event.preventDefault()
+    
 
-  function handleLogin(event: FormEvent){
-    event.preventDefault()
+  //   api.post('/user/login', {
 
-    api.post('/user/login', {
-
-      email: emailUser,
-      password: passwordUser
-
-    }).then( (response) => {
-
-      if(!response.data.auth){
-        
-        setLoginStatus(false)
-        console.log(response.data);
-        
-
-      } else {
-
-        localStorage.setItem("token","Bearer " + response.data.token)
-        setLoginStatus(true)
-
-      }
-    })
-  }
-
-  const userAutheticate = () => {
-    history.push('/user')
-  }
+  //     email: emailUser,
+  //     password: passwordUser //onSubmit={handleLogin}
+          
+  //   })
+  // }
 
   return (
+
+
     <div className="login-page">
-      <form onSubmit={handleLogin} action="">
+
+      <form  action="">
         
         <h1>Log In</h1>
 
@@ -79,11 +68,6 @@ function LoginPage(){
           Login
         </button>
 
-        <div className="button-container">
-          {loginStatus && (
-            <button type='button' onClick={userAutheticate}> Checar autenticação </button> 
-          )}
-        </div>
       </form>
 
       <div className="create-account">

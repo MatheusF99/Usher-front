@@ -75,7 +75,7 @@ function CreateUserPage() {
               Create your user
             </h1>
 
-            <span>You have account? <Link to="/">Login</Link></span>
+            <span>You have account? <Link to="/login">Login</Link></span>
           </div>
 
           <div className="form-div-input">
