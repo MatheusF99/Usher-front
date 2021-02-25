@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FormEvent, useState} from 'react'
+import React, { FormEvent, useState} from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import api from '../../services/api'
 
@@ -15,8 +15,8 @@ function CreateUserPage() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [images, setImages] = useState<File[]>([])
-  const [prevImg, setPrevImg] = useState<string[]>([])
+  // const [images, setImages] = useState<File[]>([])
+  // const [prevImg, setPrevImg] = useState<string[]>([])
   //#endregion
   async function handleSubmit(event: FormEvent){
     event.preventDefault()
@@ -27,7 +27,7 @@ function CreateUserPage() {
       name,
       email,
       password,
-      images
+      // images
     });
     
 
@@ -35,9 +35,9 @@ function CreateUserPage() {
     data.append('email', String(email))
     data.append('password', String(password))
 
-    images.forEach(image =>{
-      data.append('images', image)
-    })
+    // images.forEach(image =>{
+    //   data.append('images', image)
+    // })
     
     api.post('/users', data)
 
@@ -45,22 +45,22 @@ function CreateUserPage() {
 
   }
 
-  function handleSelectImages(event: ChangeEvent<HTMLInputElement>){
-    if(!event.target.files){
-      return;
-    }
+  // function handleSelectImages(event: ChangeEvent<HTMLInputElement>){
+  //   if(!event.target.files){
+  //     return;
+  //   }
 
-    const selectedImages = Array.from(event.target.files)
+    // const selectedImages = Array.from(event.target.files)
 
-    setImages(selectedImages)
+    // setImages(selectedImages)
 
-    const selectedImgPrev = selectedImages.map(image =>{
-      return URL.createObjectURL(image)
-    })
+    // const selectedImgPrev = selectedImages.map(image =>{
+    //   return URL.createObjectURL(image)
+    // })
 
-    setPrevImg(selectedImgPrev)
+    // setPrevImg(selectedImgPrev)
 
-  }
+  //}
 
 
   return (
@@ -113,7 +113,7 @@ function CreateUserPage() {
           </div>
 
 
-            <label className='label-image'>
+            {/* <label className='label-image'>
               Escolha uma foto de Perfil:
             </label>
           <div className="image-container">
@@ -128,14 +128,15 @@ function CreateUserPage() {
               Foto
             </label>
             <input onChange={handleSelectImages} type="file" id= "image[]"/>
-          </div>
-
+          </div> */}
+          <div className="button-field">
           <button className="form-input-btn" type="submit">
             Create on account
           </button>
           <button className="form-button-btn" type="button">
             Sign up with google account
           </button>
+          </div>
 
         </fieldset>
         <div className="field-images">

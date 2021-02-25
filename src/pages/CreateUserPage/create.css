@@ -22,7 +22,6 @@
 }
 
 
-
 .field-images{
   position: relative;
   
@@ -90,7 +89,7 @@ fieldset .header-text h1{
 
 .form-div-input{
   position: relative;
-  width: 100%;
+  width: 300px;
 
   display: flex;
   justify-content: center;
@@ -122,7 +121,7 @@ fieldset .header-text h1{
 .form-div-input label{
   position: absolute;
 
-  left: 115px;
+  left: 15px;
   top: calc(50% + 1px);
   transform: translateY(-50%);
   color: #aaa;
@@ -196,6 +195,16 @@ fieldset .header-text h1{
   display: none;
 }
 
+.button-field{
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  flex-direction: column;
+
+  height: 200px;
+}
 
 .form-input-btn{
   position: relative;
@@ -234,4 +243,6 @@ fieldset .header-text h1{
 
   font-weight: 400;
 }
+
+
 

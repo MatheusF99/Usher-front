@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
+import { useHistory } from 'react-router-dom';
+import { AuthContext } from '../../Context/authContext';
 import api from '../../services/api';
 
 import './list.css'
@@ -12,30 +14,28 @@ interface User{
   }>
 }
 function HomePage() {
-  const [users, setUsers] = useState<User[]>([])
 
-  const token = localStorage.getItem('token')
+
+  const history = useHistory()
+  const {handleLogout} = useContext(AuthContext)
+  const [users, setUsers] = useState<User[]>([])
   
   useEffect(() => {
-    api.get('/users', {
-      headers:{
-        authorization: token
-      }
-    }
-    ).then(response =>{
-      console.log({
-       token,
-        response
-      });
-      
+    api.get('/users').then(response =>{
       setUsers(response.data)
     })
-  }, [token])
+  }, [])
   
+
+  function logout(){
+    handleLogout()
+    history.push('/login')
+  }
 
   return (
     <div className="home-page">
       <h1>Hello world</h1>
+      <button type="button" onClick={logout}>Log Out</button>
       <div className="box-users">
       {
         users.map(user =>{
@@ -43,7 +43,7 @@ function HomePage() {
             <div key={user.id} className="info-user">
               <p > {user.name} </p>
               <p> {user.email} </p>
-              <img src={user.images[0].url} alt={user.name}/>
+              {/* <img src={user.images[0].url} alt={user.name}/> */}
             </div>
           )
         })

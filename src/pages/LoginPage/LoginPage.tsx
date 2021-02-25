@@ -8,37 +8,36 @@ import './login.css'
 
 function LoginPage(){
 
-  const {authenticated} = useContext(AuthContext)
-
-  // const history = useHistory()
-
+  const {handleAuth} = useContext(AuthContext)
+  const history = useHistory()
   const [emailUser, setEmailUser] = useState('')
   const [passwordUser, setPasswordUser] = useState('')
   
   
 
   
-  // function handleLogin(event: FormEvent){
-  //   event.preventDefault()
-    
+  function handleLogin(event: FormEvent){
+    event.preventDefault()
 
-  //   api.post('/user/login', {
-
-  //     email: emailUser,
-  //     password: passwordUser //onSubmit={handleLogin}
-          
-  //   })
-  // }
+    api.post('/user/login', {
+      email: emailUser,
+      password: passwordUser //onSubmit={handleLogin}        
+    }).then((response) =>{
+      if(!response.data.auth){
+        alert('Não autorizado')
+        return;
+      }
+      localStorage.setItem("token","Bearer " + response.data.token)
+      handleAuth()
+      history.push('/user')
+    })
+  }
 
   return (
 
-
     <div className="login-page">
-
-      <form  action="">
-        
+      <form action=""> 
         <h1>Log In</h1>
-
         <div className="input-container">
           <input 
             required
@@ -64,10 +63,9 @@ function LoginPage(){
           <label htmlFor=""> Keep you login </label>
         </div>
 
-        <button type="submit" className="button-form">
+        <button onClick={handleLogin} type="submit" className="button-form">
           Login
         </button>
-
       </form>
 
       <div className="create-account">
